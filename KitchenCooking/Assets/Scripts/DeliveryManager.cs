@@ -32,9 +32,8 @@ public class DeliveryManager : MonoBehaviour
         if (spawnRecipeTimer <= 0f) {
             spawnRecipeTimer = spawnRecipeTimerMax;
 
-            if (waitingRecipeSOList.Count < waitingRecipesMax) {
+            if (KitchenGameManager.Instance.IsGamePlaying() && waitingRecipeSOList.Count < waitingRecipesMax) {
                 RecipeSO waitingRecipeSO = recipeListSO.recipeSOList[UnityEngine.Random.Range(0, recipeListSO.recipeSOList.Count)];
-                Debug.Log(waitingRecipeSO.recipeName);
                 waitingRecipeSOList.Add(waitingRecipeSO);
 
                 OnRecipeSpawned?.Invoke(this, EventArgs.Empty);
@@ -67,7 +66,6 @@ public class DeliveryManager : MonoBehaviour
                 if (plateContentsMatchesRecipe) {
 
                     successfulRecipesAmount++;
-                    Debug.Log("Player d....");
 
                     waitingRecipeSOList.RemoveAt(i);
 

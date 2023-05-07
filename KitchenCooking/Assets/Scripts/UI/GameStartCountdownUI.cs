@@ -24,6 +24,7 @@ public class GameStartCountdownUI : MonoBehaviour {
 
     private void Update() {
         countdownText.text = Mathf.Ceil(KitchenGameManager.Instance.GetCountdownToStartTimer()).ToString();
+        SoundManager.Instance.PlayCountdownSound();
     }
 
     private void Show() {

@@ -29,6 +29,12 @@ public class KitchenGameManager : MonoBehaviour {
     private float gamePlayingTimerMax = 180f;
     private bool isGamePaused = false;
 
+    [SerializeField] GameObject left;
+    [SerializeField] GameObject right;
+    Animator leftAnim;
+    Animator rightAnim;
+
+
 
     private void Awake() {
         Instance = this;
@@ -37,8 +43,18 @@ public class KitchenGameManager : MonoBehaviour {
     }
 
     private void Start() {
+        leftAnim = left.GetComponent<Animator>();
+        rightAnim = right.GetComponent<Animator>();
+
         GameInput.Instance.OnPauseAction += GameInput_OnPauseAction;
         GameInput.Instance.OnInteractAction += GameInput_OnInteractAction;
+
+        StartScence();
+    }
+
+    public void StartScence(){
+        leftAnim.SetBool("isStart",true);
+        rightAnim.SetBool("isStart",true);
     }
 
     private void GameInput_OnInteractAction(object sender, EventArgs e) {
